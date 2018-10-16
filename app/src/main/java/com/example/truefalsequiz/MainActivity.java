@@ -5,7 +5,10 @@ import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -22,10 +25,18 @@ public class MainActivity extends AppCompatActivity {
 
     private String TAG  = MainActivity.class.getSimpleName();
 
+    private Quiz quiz;
+    private TextView textViewQuestion;
+    private TextView score;
+    private Button ButtonTrue;
+    private Button ButtonFalse;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        WireWidgets();
 
         // create a gson object
         Gson gson = new Gson();
@@ -36,6 +47,68 @@ public class MainActivity extends AppCompatActivity {
 // verify that it read everything properly
         Log.d(TAG, "onCreate: " + questionList.toString());
 
+        quiz = new Quiz(questionList);
+
+
+        Toast.makeText(this, "Are you ready to Start?", Toast.LENGTH_SHORT).show();
+        PlayGame();
+
+
+    }
+
+    private void PlayGame() {
+            textViewQuestion.setText(quiz.getNextQuestionText());
+            score.setText(quiz.getScore());
+
+            ButtonTrue.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (quiz.TrueIsCorrect()) {
+                        quiz.setScore(quiz.getScore() + 1);
+                        Toast.makeText(MainActivity.this, "You're Right!", Toast.LENGTH_SHORT).show();
+
+
+                        if (quiz.hasMoreQuestions()) {
+
+                            PlayGame();
+                        } else {
+
+                        }
+                    } else {
+                        quiz.setScore(quiz.getScore() - 1);
+
+                        Toast.makeText(MainActivity.this, "Wow, you're dumb, How did you get that Wrong?", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        ButtonFalse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!quiz.TrueIsCorrect()) {
+                    quiz.setScore(quiz.getScore() + 1);
+                    Toast.makeText(MainActivity.this, "You're Right!", Toast.LENGTH_SHORT).show();
+
+
+                    if (quiz.hasMoreQuestions()) {
+
+                        PlayGame();
+                    } else {
+                        //go to new "win" project
+                    }
+                } else {
+                    quiz.setScore(quiz.getScore() - 1);
+
+                    Toast.makeText(MainActivity.this, "Wow, you're dumb, How did you get that Wrong?", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void WireWidgets() {
+        textViewQuestion = findViewById(R.id.textview_quiz_question);
+        score = findViewById(R.id.textview_quiz_score);
+        ButtonFalse = findViewById(R.id.button_quiz_false);
+        ButtonTrue = findViewById(R.id.button_quiz_true);
     }
 
     private String ReadQuestions() {

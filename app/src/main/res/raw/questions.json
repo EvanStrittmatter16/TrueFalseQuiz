@@ -8,8 +8,8 @@
   {"question" : "Which book is it, Berenstein Bears or Berenstain Bears? If it's Berenstein put true, and if it's Berenstain put false", "answer" : false},
   {"question" : "The food item sandwich was named after a person", "answer" : true},
   {"question" : "The new starwars movies have been worse than the prequals", "answer" : true},
-  {"question" : "George Washington, was the the first president in the U.S.A", "answer" : false},
-  {"question" : "Comp Sci is Fun", "answer" : true},
+  {"question" : "You should say Thank you to your mother", "answer" : false},
+  {"question" : "Copes law isn't true", "answer" : true},
   {"question" : "Spiderman dies at the end of the movie infinity war", "answer" : true},
   {"question" : "This is the 9th question on this quiz", "answer" : false},
-  {"question" : "The derivative of the function y = cot(x) is sec(x)tan(x) ", "answer" : false}]
+  {"question" : "The derivative of the function y = cot(x) is -csc(x)cot(x) ", "answer" : true}]

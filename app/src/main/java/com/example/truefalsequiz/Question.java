@@ -1,23 +1,23 @@
 package com.example.truefalsequiz;
 
 public class Question {
-    private String Question;
+    private String questionText;
     private boolean Answer;
 
     public Question(String question, boolean answer) {
-        Question = question;
+        questionText = question;
         Answer = answer;
     }
 
-    public String getQuestion() {
-        return Question;
+    public String getQuestionText() {
+        return questionText;
     }
 
-    public void setQuestion(String question) {
-        Question = question;
+    public void setQuestionText(String questionText) {
+        this.questionText = questionText;
     }
 
-    public boolean isAnswer() {
+    public boolean getAnswer() {
         return Answer;
     }
 
