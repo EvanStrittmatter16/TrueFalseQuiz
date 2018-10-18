@@ -12,7 +12,7 @@ public class Quiz {
     public Quiz(List<com.example.truefalsequiz.Question> questionList) {
         this.questionList = questionList;
         score = 0;
-        questionNumber = -1;
+        questionNumber = 1;
     }
 
 

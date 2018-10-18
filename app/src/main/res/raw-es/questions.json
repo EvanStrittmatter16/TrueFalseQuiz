@@ -1,0 +1,15 @@
+
+
+
+
+
+[{"question" : "Hay dos botónes en la pantalla", "answer" : false},
+  {"question" : "La raíz cuadrada de 81 es 9", "answer" : true},
+  {"question" : "Qué libro estaba, Berenstein Bears o Berenstain Bears? Si estaba Berenstein pones cierto, y si estaba Berenstain pones falso", "answer" : false},
+  {"question" : "Sándwich es lleva el nombre de un persona", "answer" : true},
+  {"question" : "Los nuevos peliculas de 'Starwars' han sido peores que las precuelas", "answer" : true},
+  {"question" : "Debes decir 'gracias' a tu madré en inglés", "answer" : false},
+  {"question" : "Copes law no esta seguro.", "answer" : true},
+  {"question" : "Spiderman muerte a la fin de la pelicula infinity war", "answer" : true},
+  {"question" : "Está es la novena pregunta de este examen ", "answer" : false},
+  {"question" : "la derivada de la función y = cot(x) es -csc(x)cot(x) ", "answer" : true}]

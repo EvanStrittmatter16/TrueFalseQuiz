@@ -1,5 +1,6 @@
 package com.example.truefalsequiz;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void PlayGame() {
             textViewQuestion.setText(quiz.getNextQuestionText());
-            score.setText(quiz.getScore());
+            score.setText("Score: " + quiz.getScore());
 
             ButtonTrue.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -66,18 +67,25 @@ public class MainActivity extends AppCompatActivity {
                     if (quiz.TrueIsCorrect()) {
                         quiz.setScore(quiz.getScore() + 1);
                         Toast.makeText(MainActivity.this, "You're Right!", Toast.LENGTH_SHORT).show();
-
-
-                        if (quiz.hasMoreQuestions()) {
-
-                            PlayGame();
-                        } else {
-
-                        }
                     } else {
                         quiz.setScore(quiz.getScore() - 1);
 
                         Toast.makeText(MainActivity.this, "Wow, you're dumb, How did you get that Wrong?", Toast.LENGTH_SHORT).show();
+                    }
+                    if (quiz.hasMoreQuestions()) {
+
+                        PlayGame();
+                    } else {
+
+                        int s = quiz.getScore();
+
+                        Intent intentScore = new Intent(MainActivity.this, FinishActivity.class);
+
+
+                            intentScore.putExtra(Intent.EXTRA_TEXT, s);
+
+
+                        startActivity(intentScore);
                     }
                 }
             });
@@ -87,18 +95,16 @@ public class MainActivity extends AppCompatActivity {
                 if (!quiz.TrueIsCorrect()) {
                     quiz.setScore(quiz.getScore() + 1);
                     Toast.makeText(MainActivity.this, "You're Right!", Toast.LENGTH_SHORT).show();
-
-
-                    if (quiz.hasMoreQuestions()) {
-
-                        PlayGame();
-                    } else {
-                        //go to new "win" project
-                    }
                 } else {
                     quiz.setScore(quiz.getScore() - 1);
 
                     Toast.makeText(MainActivity.this, "Wow, you're dumb, How did you get that Wrong?", Toast.LENGTH_SHORT).show();
+                }
+                if (quiz.hasMoreQuestions()) {
+
+                    PlayGame();
+                } else {
+                    //go to new "win" project
                 }
             }
         });
