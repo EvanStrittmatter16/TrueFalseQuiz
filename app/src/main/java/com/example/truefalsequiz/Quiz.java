@@ -12,7 +12,7 @@ public class Quiz {
     public Quiz(List<com.example.truefalsequiz.Question> questionList) {
         this.questionList = questionList;
         score = 0;
-        questionNumber = 1;
+        questionNumber = -1;
     }
 
 
@@ -26,7 +26,7 @@ public class Quiz {
 
     public Boolean hasMoreQuestions() {
         boolean Yes = true;
-        if(questionNumber + 1 > TotalQuestions){
+        if(questionNumber + 1 > TotalQuestions-1){
             Yes = false;
 
         }
@@ -50,25 +50,13 @@ public class Quiz {
         Question q= null;
         if(hasMoreQuestions()) {
             q = questionList.get(questionNumber + 1);
-
             questionNumber++;
-            return q;
         }
         return q;
     }
 
     public String getNextQuestionText() {
-        String q = null;
-        if(hasMoreQuestions()){
-         q = questionList.get(questionNumber + 1).getQuestionText();
-
-         questionNumber++;
-          return q;
-
-        }
-
-
-        return q;
+        return getNextQuestion().getQuestionText();
     }
 
     public int getQuestionNumber() {

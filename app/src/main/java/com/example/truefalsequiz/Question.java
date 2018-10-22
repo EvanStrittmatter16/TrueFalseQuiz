@@ -2,11 +2,11 @@ package com.example.truefalsequiz;
 
 public class Question {
     private String questionText;
-    private boolean Answer;
+    private boolean answer;
 
     public Question(String question, boolean answer) {
         questionText = question;
-        Answer = answer;
+        this.answer = answer;
     }
 
     public String getQuestionText() {
@@ -18,12 +18,18 @@ public class Question {
     }
 
     public boolean getAnswer() {
-        return Answer;
+        return answer;
     }
 
     public void setAnswer(boolean answer) {
-        Answer = answer;
+        this.answer = answer;
     }
 
-
+    @Override
+    public String toString() {
+        return "Question{" +
+                "questionText='" + questionText + '\'' +
+                ", answer=" + answer +
+                '}';
+    }
 }

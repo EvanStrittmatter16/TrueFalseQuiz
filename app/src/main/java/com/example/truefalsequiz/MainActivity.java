@@ -24,7 +24,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String TAG  = MainActivity.class.getSimpleName();
+    private String TAG = MainActivity.class.getSimpleName();
 
     private Quiz quiz;
     private TextView textViewQuestion;
@@ -41,11 +41,11 @@ public class MainActivity extends AppCompatActivity {
 
         // create a gson object
         Gson gson = new Gson();
-// read your json file into an array of questions
-        Question[] questions =  gson.fromJson(ReadQuestions(), Question[].class);
-// convert your array to a list using the Arrays utility class
+        // read your json file into an array of questions
+        Question[] questions = gson.fromJson(ReadQuestions(), Question[].class);
+        // convert your array to a list using the Arrays utility class
         List<Question> questionList = Arrays.asList(questions);
-// verify that it read everything properly
+        // verify that it read everything properly
         Log.d(TAG, "onCreate: " + questionList.toString());
 
         quiz = new Quiz(questionList);
@@ -53,42 +53,41 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Are you ready to Start?", Toast.LENGTH_SHORT).show();
         PlayGame();
-
-
     }
 
     private void PlayGame() {
-            textViewQuestion.setText(quiz.getNextQuestionText());
-            score.setText("Score: " + quiz.getScore());
 
-            ButtonTrue.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (quiz.TrueIsCorrect()) {
-                        quiz.setScore(quiz.getScore() + 1);
-                        Toast.makeText(MainActivity.this, "You're Right!", Toast.LENGTH_SHORT).show();
-                    } else {
-                        quiz.setScore(quiz.getScore() - 1);
+        textViewQuestion.setText("" + quiz.getNextQuestionText());
+        score.setText("Score: " + quiz.getScore());
 
-                        Toast.makeText(MainActivity.this, "Wow, you're dumb, How did you get that Wrong?", Toast.LENGTH_SHORT).show();
-                    }
-                    if (quiz.hasMoreQuestions()) {
+        ButtonTrue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (quiz.TrueIsCorrect()) {
+                    quiz.setScore(quiz.getScore() + 1);
+                    Toast.makeText(MainActivity.this, "You're Right!", Toast.LENGTH_SHORT).show();
+                } else {
+                    quiz.setScore(quiz.getScore() - 1);
 
-                        PlayGame();
-                    } else {
-
-                        int s = quiz.getScore();
-
-                        Intent intentScore = new Intent(MainActivity.this, FinishActivity.class);
-
-
-                            intentScore.putExtra(Intent.EXTRA_TEXT, s);
-
-
-                        startActivity(intentScore);
-                    }
+                    Toast.makeText(MainActivity.this, "Wow, you're dumb, How did you get that Wrong?", Toast.LENGTH_SHORT).show();
                 }
-            });
+                if (quiz.hasMoreQuestions()) {
+
+                    PlayGame();
+                } else {
+
+                    int s = quiz.getScore();
+
+                    Intent intentScore = new Intent(MainActivity.this, FinishActivity.class);
+
+
+                    intentScore.putExtra(Intent.EXTRA_TEXT, s);
+
+
+                    startActivity(intentScore);
+                }
+            }
+        });
         ButtonFalse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,7 +103,16 @@ public class MainActivity extends AppCompatActivity {
 
                     PlayGame();
                 } else {
-                    //go to new "win" project
+                    Toast.makeText(MainActivity.this, "The has more q method works", Toast.LENGTH_SHORT).show();
+                    int s = quiz.getScore();
+
+                    Intent intentScore = new Intent(MainActivity.this, FinishActivity.class);
+
+
+                    intentScore.putExtra(Intent.EXTRA_TEXT, s);
+
+
+                    startActivity(intentScore);
                 }
             }
         });
@@ -123,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
         return readTextFile(XmlFileInputStream);
 
     }
+
     public String readTextFile(InputStream inputStream) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
