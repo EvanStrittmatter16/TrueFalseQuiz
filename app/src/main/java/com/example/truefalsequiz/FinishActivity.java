@@ -23,6 +23,6 @@ public class FinishActivity extends AppCompatActivity {
     }
 
     private void WireWidgets() {
-        Score = findViewById(R.id.textview_quiz_score);
+        Score = findViewById(R.id.textview_finishactivity_score);
     }
 }
